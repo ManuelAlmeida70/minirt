@@ -82,4 +82,16 @@ bool	intersect_rectangle(t_ray ray, t_rectangle rectangle, t_hit *hit)
 }
 
 //Intersecao do raio com um plano
-bool	intersect_plane(t_)
+bool	intersect_plane(t_ray ray, t_plane plane, t_hit *hit)
+{
+	double	denom = vector_dot(plane.normal, ray.direction);
+
+	if (fabs(denom) < 1e-6) //O raio e paralelo ao plano
+		return false;
+	double	t = vector_dot(vector_subtract(plane.point, ray.origin), plane.normal) / denom;
+
+	hit->t = t;
+	hit->point = ray_at(ray, t);
+	hit->color = plane.color;
+	return true;
+}
