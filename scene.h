@@ -16,7 +16,7 @@ typedef struct s_scene
     int num_rectangles;
 
     t_plane     *planes;
-    int num_pslrnd;
+    int num_planes;
 }   t_scene;
 
 bool    find_closest_hit(t_ray ray, t_scene secne, t_hit *closest_hit);
